@@ -1,0 +1,35 @@
+using UnityEngine;
+using UnityEngine.InputSystem;
+
+public class InputSendMessages : MonoBehaviour
+{
+    private Rigidbody2D rb;
+    [SerializeField] private float speed;
+    private Vector2 direction;
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    void Start()
+    {
+        rb = GetComponent<Rigidbody2D>();
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        
+    }
+
+    private void FixedUpdate()
+    {
+        rb.linearVelocityX = speed * direction.x;
+        rb.linearVelocityY = speed * direction.y;
+    }
+
+    private void OnMove(InputValue value)
+    {
+        direction = value.Get<Vector2>();
+    }
+    private void OnAttack()
+    {
+        Debug.Log("Attacked");
+    }
+}
